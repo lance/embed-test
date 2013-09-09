@@ -16,6 +16,12 @@ public class Main {
         Vertx vertx = VertxFactory.newVertx("localhost");
         EventBus bus = vertx.eventBus();
 
+        try {
+            System.out.println("Sleeping for a little while to let vert.x do it's thing");
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+        }
+
         if (args.length > 0 && args[0].equals("publish")) {
             System.out.println("Publishing to embed-test.channel");
             bus.publish("embed-test.channel", "Hello world");
